@@ -8,10 +8,10 @@ services:
         - "443:443"
       networks:
         - default
-      volumes:
-        - ~/data/wp:/var/www/html
       env_file: 
         - .env
+      volumes:
+        - ~/data/wp:/var/www/html #look here for site files
       healthcheck:
         test: ["CMD", "nginx", "status"]
         interval: 5s

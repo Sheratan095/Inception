@@ -10,4 +10,10 @@ up:
 down:
 	docker compose -f $(DOCKER_COMPOSE_FILE) down
 
+clean:
+	docker system prune -f
+	docker volume prune -f
+	sudo rm -rf /home/marco/data
+
+
 re: down build up
