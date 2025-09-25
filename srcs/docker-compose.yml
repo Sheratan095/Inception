@@ -1,0 +1,20 @@
+services:
+  nginx:
+      build:
+        context: ./requirements/Nginx
+        dockerfile: Dockerfile
+      container_name: nginx
+      ports:
+        - "443:443"
+      networks:
+        - default
+      volumes:
+        - ~/data/wp:/var/www/html
+      env_file: 
+        - .env
+      healthcheck:
+        test: ["CMD", "nginx", "status"]
+        interval: 5s
+        timeout: 60s
+        retries: 50
+      restart: always
