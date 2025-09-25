@@ -1,8 +1,7 @@
 FROM debian:11
 
 # Install Nginx + OpenSSL
-RUN apt-get update && apt-get install -y \
-    nginx openssl \
+RUN apt-get update && apt-get install -y nginx openssl
 
 # Generate self-signed SSL cert (valid 1 year)
 RUN mkdir -p /etc/ssl/private /etc/ssl/certs && \
