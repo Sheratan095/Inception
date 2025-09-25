@@ -1,20 +1,39 @@
 services:
   nginx:
-      build:
-        context: ./requirements/Nginx
-        dockerfile: Dockerfile
-      container_name: nginx
-      ports:
-        - "443:443"
-      networks:
-        - default
-      env_file: 
-        - .env
-      volumes:
-        - ~/data/wp:/var/www/html #look here for site files
-      healthcheck:
-        test: ["CMD", "nginx", "status"]
-        interval: 5s
-        timeout: 60s
-        retries: 50
-      restart: always
+    build:
+      context: ./requirements/Nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - "443:443"
+    networks:
+      - default
+    env_file: 
+      - .env
+    volumes:
+      - ~/data/wp:/var/www/html #look here for site files
+    healthcheck:
+      test: ["CMD", "nginx", "status"]
+      interval: 5s
+      timeout: 60s
+      retries: 50
+    restart: always
+
+  wordpress:
+    build:
+      context: ./requirements/Wordpress
+      dockerfile: Dockerfile
+    container_name: wordpress
+    networks:
+      - default
+    env_file: 
+      - .env
+    volumes:
+      - ~/data/wp:/var/www/html #look here for site files
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/9000' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 90s
+    restart: always

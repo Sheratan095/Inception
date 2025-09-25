@@ -14,6 +14,6 @@ RUN mkdir -p /etc/ssl/private /etc/ssl/certs && \
 COPY Conf/nginx.conf /etc/nginx/sites-available/default
 
 # Copy startup script, allow execution and execute it
-COPY Tools/setup.sh /
-RUN chmod +x /setup.sh
-CMD ["/setup.sh"]
+COPY Tools/nginx.sh /
+RUN chmod +x /nginx.sh
+CMD ["/nginx.sh"]
