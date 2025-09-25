@@ -8,9 +8,9 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
     chmod +x /usr/local/bin/wp
 
 # Copy custom PHP-FPM config file
-COPY /Conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
-COPY /Tools/wordpress.sh /
+COPY /tools/wordpress.sh /
 
 # 21 is for FTP, 9000 is for PHP-FPM
 EXPOSE 9000 21

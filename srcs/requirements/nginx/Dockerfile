@@ -11,9 +11,9 @@ RUN mkdir -p /etc/ssl/private /etc/ssl/certs && \
       -subj "/C=IT/L=Florence/O=42/OU=Student/CN=localhost"
 
 # Copy your custom Nginx config
-COPY Conf/nginx.conf /etc/nginx/sites-available/default
+COPY conf/nginx.conf /etc/nginx/sites-available/default
 
 # Copy startup script, allow execution and execute it
-COPY Tools/nginx.sh /
+COPY tools/nginx.sh /
 RUN chmod +x /nginx.sh
 CMD ["/nginx.sh"]
