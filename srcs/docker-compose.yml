@@ -80,5 +80,29 @@ services:
       retries: 5
     restart: always
 
+  ftp:
+    build:
+      context: ./requirements/bonus/ftp
+      dockerfile: Dockerfile
+    container_name: ftp
+    ports:
+      - "21:21"
+      - "1998-2002:1998-2002"
+    networks:
+      - default
+    env_file: 
+      - .env
+    volumes:
+      - ~/data/wp:/var/www/html
+    depends_on:
+      wordpress:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "21"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
 volumes:
   redis_data:
