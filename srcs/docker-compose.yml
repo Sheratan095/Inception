@@ -104,5 +104,28 @@ services:
       retries: 5
     restart: always
 
+  adminer:
+    build:
+      context: ./requirements/bonus/adminer
+      dockerfile: Dockerfile
+    container_name: adminer
+    ports:
+      - "8080:9001"
+    networks:
+      - default
+    env_file: 
+      - .env
+    volumes:
+      - ~/data/wp:/var/www/html
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "9001"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
 volumes:
   redis_data:
