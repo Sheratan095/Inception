@@ -8,7 +8,7 @@ EXPOSE 3306
 COPY ./tools/mariadb.sh /mariadb.sh
 RUN chmod +x /mariadb.sh
 
-COPY ./conf/50-server.conf /etc/mysql/mariadb.conf.d/50-server.conf
+COPY ./conf/50-server.conf /etc/mysql/mariadb.conf.d/99-custom.cnf
 
 RUN mkdir -p /var/lib/mysql /var/run/mysqld \
     && chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
