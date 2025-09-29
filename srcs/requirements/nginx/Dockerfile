@@ -13,6 +13,9 @@ RUN mkdir -p /etc/ssl/private /etc/ssl/certs && \
 # Copy your custom Nginx config
 COPY conf/nginx.conf /etc/nginx/sites-available/default
 
+# Copy custom HTML files to static location
+COPY html/ /usr/share/nginx/html/
+
 # Copy startup script, allow execution and execute it
 COPY tools/nginx.sh /
 RUN chmod +x /nginx.sh
