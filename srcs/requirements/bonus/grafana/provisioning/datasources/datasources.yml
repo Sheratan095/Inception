@@ -4,11 +4,11 @@ datasources:
   - name: MariaDB
     type: mysql
     access: proxy
-    url: 92ff1a71bb2e_mariadb:3306
-    database: inception_db
-    user: grafana
+    url: ${DB_HOST}:3306
+    database: ${DB_NAME}
+    user: ${GRAFANA_DB_USER}
     secureJsonData:
-      password: maceccar42
+      password: ${GRAFANA_DB_PASSWORD}
     jsonData:
       maxOpenConns: 100
       maxIdleConns: 100
@@ -19,11 +19,11 @@ datasources:
   - name: WordPress Database
     type: mysql
     access: proxy
-    url: 92ff1a71bb2e_mariadb:3306
-    database: inception_db
-    user: grafana
+    url: ${DB_HOST}:3306
+    database: ${DB_NAME}
+    user: ${GRAFANA_DB_USER}
     secureJsonData:
-      password: maceccar42
+      password: ${GRAFANA_DB_PASSWORD}
     jsonData:
       maxOpenConns: 50
       maxIdleConns: 50
