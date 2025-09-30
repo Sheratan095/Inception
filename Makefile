@@ -7,6 +7,9 @@ build:
 up:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
 
+stop:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) stop
+
 down:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) down
 
