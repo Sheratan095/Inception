@@ -121,11 +121,38 @@ services:
       mariadb:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "nc", "-z", "localhost", "9001"]
+      test: ["CMD", "sh", "-c", "timeout 3s bash -c '</dev/tcp/localhost/9001'"]
       interval: 10s
       timeout: 5s
       retries: 5
     restart: always
 
+  grafana:
+    build:
+      context: ./requirements/bonus/grafana
+      dockerfile: Dockerfile
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - default
+    env_file: 
+      - .env
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - grafana_logs:/var/log/grafana
+    depends_on:
+      - mariadb
+      - wordpress
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    restart: always
+
 volumes:
   redis_data:
+  grafana_data:
+  grafana_logs:
