@@ -141,6 +141,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - grafana_logs:/var/log/grafana
+      - ./requirements/bonus/grafana/provisioning:/etc/grafana/provisioning
     depends_on:
       - mariadb
       - wordpress
