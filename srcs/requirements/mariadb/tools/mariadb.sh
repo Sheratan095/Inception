@@ -19,6 +19,10 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 
     echo "Running initial SQL setup..."
     mariadb -u root <<-EOSQL
+        ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';
+        CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '${DB_ROOT_PASSWORD}';
+        GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+        
         CREATE DATABASE IF NOT EXISTS ${DB_NAME};
         CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
         GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%';
