@@ -18,5 +18,9 @@ clean:
 	docker volume prune -f
 	sudo rm -rf /home/marco/data
 
+fclean:
+	docker system prune -a -f
+	docker volume prune -f
+	sudo rm -rf /home/marco/data
 
 re: down build up
