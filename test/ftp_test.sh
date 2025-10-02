@@ -39,9 +39,8 @@ echo
 # ==============================================================================
 # Step 1: Create Test File
 # ==============================================================================
-# WARNING: Current path "/test.jpeg" will try to create file in root directory
-# This requires root permissions and may fail. Better to use /tmp/test.jpeg
-TEST_FILE="/test.jpeg"
+# Using /tmp directory which is writable by all users
+TEST_FILE="/tmp/test.jpeg"
 echo "Hello from FTP upload test - $(date)" > "$TEST_FILE"
 echo "→ Created test file: $TEST_FILE"
 echo "  Content: Test message with timestamp for verification"
