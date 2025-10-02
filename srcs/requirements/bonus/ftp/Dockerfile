@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:12
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y vim vsftpd netcat openssl
 

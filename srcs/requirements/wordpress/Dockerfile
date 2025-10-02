@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:12
 
 # Install PHP, PHP-FPM, PHP extensions, and MySQL client
 RUN apt-get update && apt-get install -y vim wget php7.4-fpm php-mysql default-mysql-client
