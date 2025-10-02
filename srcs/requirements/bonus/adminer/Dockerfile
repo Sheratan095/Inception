@@ -1,8 +1,8 @@
 FROM debian:12
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y vim wget php7.4-fpm php-mysql
+RUN apt-get update && apt-get upgrade -y && apt-get install -y vim wget php8.2-fpm php-mysql
 
-COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
 
 COPY tools/adminer.sh /
 

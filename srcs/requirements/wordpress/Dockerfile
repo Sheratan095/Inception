@@ -1,14 +1,14 @@
 FROM debian:12
 
 # Install PHP, PHP-FPM, PHP extensions, and MySQL client
-RUN apt-get update && apt-get install -y vim wget php7.4-fpm php-mysql default-mysql-client
+RUN apt-get update && apt-get install -y vim wget php8.2-fpm php-mysql default-mysql-client
 
 # Install WP-CLI
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /usr/local/bin/wp && \
     chmod +x /usr/local/bin/wp
 
 # Copy custom PHP-FPM config file
-COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY /conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
 
 COPY /tools/wordpress.sh /
 

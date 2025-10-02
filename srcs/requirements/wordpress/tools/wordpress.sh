@@ -41,4 +41,4 @@ unset $DB_USER $DB_PASS $WP_ADMIN $WP_ADMIN_PASSWORD $WP_USER $WP_USER_PASS $FTP
 
 mkdir -p /run/php
 
-php-fpm7.4 -F
+php-fpm8.2 -F

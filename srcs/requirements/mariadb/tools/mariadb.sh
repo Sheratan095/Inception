@@ -2,10 +2,14 @@
 set -e
 
 
-# Initialize DB if empty
-if [ ! -d "/var/lib/mysql/mysql" ]; then
+# Initialize DB if our custom database doesn't exist
+if [ ! -d "/var/lib/mysql/${DB_NAME}" ]; then
     echo "Initializing MariaDB data directory..."
-    mariadb-install-db --user=mysql --datadir=/var/lib/mysql
+    
+    # Only run mariadb-install-db if mysql directory doesn't exist
+    if [ ! -d "/var/lib/mysql/mysql" ]; then
+        mariadb-install-db --user=mysql --datadir=/var/lib/mysql
+    fi
 
     echo "Starting temporary MariaDB server for initialization..."
     mysqld_safe --datadir=/var/lib/mysql &
@@ -44,4 +48,5 @@ else
     echo "MariaDB data directory already initialized. Starting server..."
 fi
 
-exec mysqld --user=mysql --datadir=/var/lib/mysql
+echo "Starting MariaDB server..."
+mysqld --user=mysql --datadir=/var/lib/mysql

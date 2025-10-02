@@ -9,7 +9,7 @@ services:
     env_file: 
       - .env
     volumes:
-      - ~/data/db:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
@@ -29,7 +29,7 @@ services:
     env_file: 
       - .env
     volumes:
-      - ~/data/wp:/var/www/html #look here for site files
+      - wordpress_data:/var/www/html #look here for site files
     depends_on:
       wordpress:
         condition: service_healthy
@@ -50,7 +50,7 @@ services:
     env_file: 
       - .env
     volumes:
-      - ~/data/wp:/var/www/html #look here for site files
+      - wordpress_data:/var/www/html #look here for site files
     depends_on:
       mariadb:
         condition: service_healthy
@@ -93,7 +93,7 @@ services:
     env_file: 
       - .env
     volumes:
-      - ~/data/wp:/var/www/html
+      - wordpress_data:/var/www/html
     depends_on:
       wordpress:
         condition: service_healthy
@@ -116,7 +116,7 @@ services:
     env_file: 
       - .env
     volumes:
-      - ~/data/wp:/var/www/html
+      - wordpress_data:/var/www/html
     depends_on:
       mariadb:
         condition: service_healthy
@@ -154,6 +154,8 @@ services:
     restart: always
 
 volumes:
+  mariadb_data:
+  wordpress_data:
   redis_data:
   grafana_data:
   grafana_logs:
