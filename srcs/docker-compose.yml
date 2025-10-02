@@ -155,7 +155,32 @@ services:
 
 volumes:
   mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/maceccar/inception_data/mariadb
   wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/maceccar/inception_data/wordpress
   redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/maceccar/inception_data/redis
   grafana_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/maceccar/inception_data/grafana/data
   grafana_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/maceccar/inception_data/grafana/logs
